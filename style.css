@@ -7,132 +7,192 @@
 
 body {
     min-height: 100vh;
-    padding: 30px 16px;
+    padding: 28px 14px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    color: #7b3153;
-    background: linear-gradient(135deg, #ffe1ec, #fff3f7, #fbd0e4);
+    color: #873858;
+    background: linear-gradient(135deg, #ffdce9, #fff5f8, #f8cce0);
     overflow-x: hidden;
 }
 
 .card {
-    position: relative;
-    z-index: 1;
     width: 100%;
     max-width: 760px;
-    padding: 36px 28px;
+    padding: 36px 26px;
     text-align: center;
     background: rgba(255, 255, 255, 0.92);
-    border: 2px solid #ffc1d8;
+    border: 1px solid #ffc3da;
     border-radius: 28px;
-    box-shadow: 0 15px 45px rgba(193, 79, 130, 0.2);
-    animation: appear 1s ease;
+    box-shadow: 0 18px 55px rgba(177, 67, 117, 0.18);
+    animation: appear 0.9s ease;
 }
 
-.flower {
-    font-size: 60px;
-    animation: sway 2s infinite ease-in-out;
+.tag {
+    color: #d96b9a;
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
 }
 
 h1 {
-    margin: 15px 0;
+    margin: 16px 0 12px;
     color: #e34d8b;
     font-size: clamp(28px, 5vw, 42px);
 }
 
 .subtitle {
-    margin-bottom: 24px;
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-.message {
-    padding: 22px;
-    margin-bottom: 24px;
-    border-radius: 18px;
-    background: #fff0f6;
+    margin-bottom: 22px;
     font-size: 16px;
-    line-height: 1.9;
-}
-
-button {
-    padding: 13px 22px;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    background: linear-gradient(135deg, #ff76ac, #e84393);
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(232, 67, 147, 0.25);
-    transition: transform 0.25s, box-shadow 0.25s;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(232, 67, 147, 0.35);
-}
-
-.surprise {
-    display: none;
-    margin-top: 22px;
-    padding: 18px;
-    background: #ffe5f0;
-    border-radius: 16px;
     line-height: 1.7;
 }
 
-.surprise.show {
-    display: block;
-    animation: appear 0.5s ease;
+.gift-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px;
+    color: #a94472;
+    background: #fff0f6;
+    border: 2px dashed #f3a2c3;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-.music {
-    margin-top: 32px;
+.gift-button:hover {
+    background: #ffe3ef;
 }
 
-.music h2 {
-    margin-bottom: 10px;
+.gift {
+    display: inline-block;
+    font-size: clamp(90px, 18vw, 135px);
+    line-height: 1.4;
+    filter: drop-shadow(0 8px 8px rgba(181, 70, 120, 0.2));
+    animation: giftBounce 1.5s infinite ease-in-out;
+}
+
+.gift-hint {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.gift-button.opening .gift {
+    animation: giftOpen 0.8s ease forwards;
+}
+
+.gift-button.opened .gift {
+    animation: none;
+}
+
+.letter {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin-top: 0;
+    transition: grid-template-rows 0.8s ease, opacity 0.8s ease,
+                margin-top 0.8s ease;
+}
+
+.letter.show {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 24px;
+}
+
+.letter-inner {
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 22px;
+    border-radius: 20px;
+    background: #fff0f6;
+    line-height: 1.9;
+}
+
+.letter.show .letter-inner {
+    padding: 24px 22px;
+    animation: letterAppear 0.9s ease;
+}
+
+.flower {
+    margin-bottom: 12px;
+    font-size: 34px;
+}
+
+.letter h2 {
+    margin-bottom: 16px;
     color: #d94686;
     font-size: 23px;
 }
 
+.letter p {
+    margin-bottom: 16px;
+    font-size: 15px;
+}
+
+.signature {
+    margin-top: 12px;
+    color: #d94686;
+    font-weight: bold;
+}
+
+.music {
+    margin-top: 32px;
+    padding: 22px 14px;
+    border-radius: 20px;
+    background: #fff6fa;
+}
+
+.music-icon {
+    margin-bottom: 8px;
+    font-size: 32px;
+    animation: musicPulse 1.5s infinite ease-in-out;
+}
+
+.music h2 {
+    margin-bottom: 8px;
+    color: #d94686;
+    font-size: 22px;
+}
+
 .music p {
     margin-bottom: 16px;
-    line-height: 1.6;
-}
-
-.music-player {
-    width: 100%;
-    max-width: 560px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(150, 50, 100, 0.18);
-}
-
-.music-player iframe {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: none;
-}
-
-footer {
-    margin-top: 28px;
-    color: #b55b84;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.7;
 }
 
-.hearts {
+.music-button {
+    padding: 12px 25px;
+    color: white;
+    background: linear-gradient(135deg, #ff76ac, #e84393);
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(232, 67, 147, 0.22);
+    transition: transform 0.2s;
+}
+
+.music-button:hover {
+    transform: translateY(-3px);
+}
+
+footer {
+    margin-top: 26px;
+    color: #b55b84;
+    font-size: 13px;
+}
+
+.background-hearts {
     position: fixed;
     top: 12px;
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 26px;
+    font-size: 23px;
     opacity: 0.65;
     pointer-events: none;
     animation: sway 3s infinite ease-in-out;
@@ -140,7 +200,7 @@ footer {
 
 .floating-heart {
     position: fixed;
-    z-index: 5;
+    z-index: 10;
     bottom: -40px;
     font-size: 24px;
     pointer-events: none;
@@ -150,22 +210,67 @@ footer {
 @keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(18px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+@keyframes giftBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+}
+
+@keyframes giftOpen {
+    0% {
+        transform: scale(1) rotate(0);
+    }
+    25% {
+        transform: scale(1.15) rotate(-12deg);
+    }
+    50% {
+        transform: scale(0.9) rotate(12deg);
+    }
+    75% {
+        transform: scale(1.2) rotate(-5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes letterAppear {
+    from {
+        transform: translateY(25px) scale(0.96);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
 @keyframes sway {
     0%, 100% {
-        transform: rotate(-5deg);
+        transform: rotate(-4deg);
     }
-
     50% {
-        transform: rotate(5deg);
+        transform: rotate(4deg);
     }
 }
 
@@ -174,7 +279,6 @@ footer {
         transform: translateY(0) rotate(0deg);
         opacity: 1;
     }
-
     to {
         transform: translateY(-110vh) rotate(360deg);
         opacity: 0;
@@ -190,12 +294,24 @@ footer {
         padding: 26px 16px;
     }
 
-    .message {
-        padding: 16px;
-        font-size: 15px;
+    .letter-inner {
+        padding-left: 14px;
+        padding-right: 14px;
     }
 
-    .music h2 {
+    .letter.show .letter-inner {
+        padding: 20px 14px;
+    }
+
+    .letter h2 {
         font-size: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

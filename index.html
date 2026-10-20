@@ -4,93 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chúc mừng ngày 20/10 🌸</title>
+    <title>Món quà 20/10 💗</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="hearts" aria-hidden="true">💗 🌸 💖 🌷 💕</div>
+    <div class="background-hearts" aria-hidden="true">
+        💗　🌸　💕　✨　💖
+    </div>
 
     <main class="card">
-        <div class="flower">🌷</div>
+        <p class="tag">A LITTLE GIFT FOR YOU</p>
 
         <h1>Chúc mừng ngày 20/10!</h1>
-
         <p class="subtitle">
-            Gửi những cô gái tuyệt vời của lớp chúng mình 💕
+            Có một món quà nhỏ dành riêng cho bạn 🌷
         </p>
 
-        <div class="message">
-            Chúc các bạn luôn xinh đẹp, vui vẻ và hạnh phúc.
-            Mong rằng mỗi ngày đều có thật nhiều nụ cười,
-            những điều may mắn và những người yêu thương bên cạnh.
-            <br><br>
-            Cảm ơn các bạn vì đã làm cho thanh xuân của lớp
-            trở nên thật đáng nhớ. Chúc các bạn có một ngày
-            20/10 thật rực rỡ! 🌸
-        </div>
+        <button id="giftBtn" class="gift-button"
+                aria-label="Nhấn để mở hộp quà">
+            <span class="gift" id="gift">🎁</span>
+            <span class="gift-hint" id="giftHint">
+                Nhấn vào hộp quà để mở nhé!
+            </span>
+        </button>
 
-        <button id="surpriseBtn">🎁 Nhận lời chúc đặc biệt</button>
+        <section id="letter" class="letter">
+            <div class="letter-inner">
+                <div class="flower">🌷💐🌷</div>
+                <h2>Gửi những cô gái tuyệt vời! 💗</h2>
 
-        <p id="surprise" class="surprise">
-            Chúc các bạn luôn là phiên bản tuyệt vời nhất
-            của chính mình! 💖
-        </p>
+                <p>
+                    Chúc các bạn luôn xinh đẹp, vui vẻ và hạnh phúc.
+                    Mong rằng mỗi ngày đều có thật nhiều nụ cười,
+                    những điều may mắn và những người yêu thương bên cạnh.
+                </p>
 
-        <section class="music">
-            <h2>🎵 Âm nhạc dành tặng bạn</h2>
-            <p>Một giai điệu nhỏ dành cho ngày 20/10 💗</p>
+                <p>
+                    Cảm ơn các bạn vì đã làm cho thanh xuân của lớp
+                    trở nên thật đáng nhớ. Chúc các bạn có một ngày
+                    20/10 thật rực rỡ, luôn tự tin và tỏa sáng theo cách
+                    riêng của mình! 💖
+                </p>
 
-            <div class="music-player">
-                <iframe
-                    src="https://www.youtube.com/embed/JCn0hoILmyw?start=9&autoplay=1"
-                    title="Nhạc chúc mừng 20/10"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
-                </iframe>
+                <div class="signature">With love, from your class 💌</div>
             </div>
         </section>
 
-        <footer>
-            Made with 💗 dành tặng các bạn nữ nhân ngày 20/10
-        </footer>
+        <section class="music">
+            <div class="music-icon">🎵</div>
+            <h2>Giai điệu dành tặng bạn</h2>
+            <p>Một chút âm nhạc cho ngày đặc biệt này.</p>
+
+            <button id="musicBtn" class="music-button">
+                ▶ Bật nhạc
+            </button>
+        </section>
+
+        <footer>Made with 💗 for 20/10</footer>
     </main>
 
+    <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+
     <script>
-        const button = document.getElementById("surpriseBtn");
-        const surprise = document.getElementById("surprise");
+        const giftBtn = document.getElementById("giftBtn");
+        const gift = document.getElementById("gift");
+        const giftHint = document.getElementById("giftHint");
+        const letter = document.getElementById("letter");
+        const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
 
-        button.addEventListener("click", function () {
-            surprise.classList.toggle("show");
+        let giftOpened = false;
 
-            if (surprise.classList.contains("show")) {
-                button.textContent = "💖 Lời chúc dành cho bạn";
-                createHearts();
+        // Hiệu ứng mở quà
+        giftBtn.addEventListener("click", () => {
+            if (giftOpened) return;
+
+            giftOpened = true;
+            giftBtn.classList.add("opening");
+            giftHint.textContent = "Món quà đang được mở...";
+
+            createConfetti();
+
+            setTimeout(() => {
+                gift.textContent = "🎀";
+                letter.classList.add("show");
+                giftHint.textContent = "Một lời chúc dành riêng cho bạn 💗";
+                giftBtn.classList.remove("opening");
+                giftBtn.classList.add("opened");
+            }, 800);
+        });
+
+        // Hiệu ứng trái tim và hoa bay
+        function createConfetti() {
+            const emojis = ["💗", "💖", "💕", "🌸", "✨", "🌷"];
+
+            for (let i = 0; i < 32; i++) {
+                const item = document.createElement("span");
+                item.className = "floating-heart";
+                item.textContent =
+                    emojis[Math.floor(Math.random() * emojis.length)];
+
+                item.style.left = Math.random() * 100 + "vw";
+                item.style.animationDuration =
+                    (2.5 + Math.random() * 2.5) + "s";
+                item.style.animationDelay = Math.random() * 0.8 + "s";
+
+                document.body.appendChild(item);
+                setTimeout(() => item.remove(), 6000);
+            }
+        }
+
+        // Thử tự phát nhạc khi mở trang
+        async function tryPlayMusic() {
+            try {
+                await music.play();
+                musicBtn.textContent = "Ⅱ Tạm dừng nhạc";
+            } catch (error) {
+                musicBtn.textContent = "▶ Bật nhạc";
+            }
+        }
+
+        window.addEventListener("load", tryPlayMusic);
+
+        // Nút phát / tạm dừng nhạc
+        musicBtn.addEventListener("click", async () => {
+            if (music.paused) {
+                try {
+                    await music.play();
+                    musicBtn.textContent = "Ⅱ Tạm dừng nhạc";
+                } catch (error) {
+                    alert("Không phát được nhạc. Hãy kiểm tra file music.mp3!");
+                }
             } else {
-                button.textContent = "🎁 Nhận lời chúc đặc biệt";
+                music.pause();
+                musicBtn.textContent = "▶ Bật nhạc";
             }
         });
 
-        function createHearts() {
-            const emojis = ["💗", "💖", "💕", "🌸", "✨"];
-
-            for (let i = 0; i < 18; i++) {
-                const heart = document.createElement("span");
-
-                heart.className = "floating-heart";
-                heart.textContent =
-                    emojis[Math.floor(Math.random() * emojis.length)];
-
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.animationDuration =
-                    (3 + Math.random() * 3) + "s";
-
-                document.body.appendChild(heart);
-
-                setTimeout(() => heart.remove(), 6000);
-            }
-        }
+        music.addEventListener("ended", () => {
+            musicBtn.textContent = "▶ Bật nhạc";
+        });
     </script>
 </body>
 </html>
