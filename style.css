@@ -1,310 +1,273 @@
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     min-height: 100vh;
-    padding: 28px 14px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe1ed, #ffc2dc, #fff0f6);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
-    color: #873858;
-    background: linear-gradient(135deg, #ffdce9, #fff5f8, #f8cce0);
     overflow-x: hidden;
+    overflow-y: auto;
+    padding: 30px 15px;
+    color: #9d245c;
 }
 
-.card {
+.container {
     width: 100%;
-    max-width: 760px;
-    padding: 36px 26px;
+    max-width: 650px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid #ffc3da;
-    border-radius: 28px;
-    box-shadow: 0 18px 55px rgba(177, 67, 117, 0.18);
-    animation: appear 0.9s ease;
+    position: relative;
+    z-index: 2;
 }
 
-.tag {
-    color: #d96b9a;
-    font-size: 12px;
-    letter-spacing: 4px;
-    font-weight: bold;
-}
-
-h1 {
-    margin: 16px 0 12px;
-    color: #e34d8b;
-    font-size: clamp(28px, 5vw, 42px);
+.title {
+    font-size: clamp(25px, 5vw, 38px);
+    margin-bottom: 12px;
+    color: #d63384;
+    text-shadow: 0 3px 12px #ffffff;
 }
 
 .subtitle {
-    margin-bottom: 22px;
     font-size: 16px;
-    line-height: 1.7;
+    margin-bottom: 35px;
+    color: #a83d6d;
 }
 
 .gift-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 15px;
-    color: #a94472;
-    background: #fff0f6;
-    border: 2px dashed #f3a2c3;
-    border-radius: 22px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.gift-button:hover {
-    background: #ffe3ef;
+    gap: 18px;
+    margin: 0 auto;
+    color: #a52c65;
 }
 
 .gift {
-    display: inline-block;
-    font-size: clamp(90px, 18vw, 135px);
-    line-height: 1.4;
-    filter: drop-shadow(0 8px 8px rgba(181, 70, 120, 0.2));
-    animation: giftBounce 1.5s infinite ease-in-out;
+    width: 180px;
+    height: 180px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 2s ease-in-out infinite;
 }
 
-.gift-hint {
-    font-size: 15px;
-    line-height: 1.6;
+.gift-box {
+    font-size: 115px;
+    filter: drop-shadow(0 12px 12px #d84b8a55);
+    position: relative;
+    z-index: 2;
 }
 
-.gift-button.opening .gift {
-    animation: giftOpen 0.8s ease forwards;
+.gift-lid {
+    position: absolute;
+    width: 105px;
+    height: 24px;
+    background: #ff75aa;
+    border: 3px solid #e64b8c;
+    border-radius: 7px;
+    top: 35px;
+    left: 37px;
+    z-index: 3;
+    opacity: 0;
 }
 
-.gift-button.opened .gift {
-    animation: none;
+.gift-bow {
+    position: absolute;
+    top: 5px;
+    font-size: 48px;
+    z-index: 4;
+    opacity: 0;
+}
+
+.click-text {
+    font-size: 17px;
+    font-weight: 600;
+    animation: pulse 1.5s infinite;
+}
+
+.gift-button:hover .gift {
+    transform: scale(1.08);
+}
+
+.gift-button:disabled {
+    cursor: default;
+}
+
+.gift.opening {
+    animation: shake 0.7s ease-in-out,
+               giftDisappear 0.5s ease-in-out 0.7s forwards;
+}
+
+.gift.opening .gift-lid {
+    opacity: 1;
+    animation: lidOpen 0.6s ease-in-out 0.2s forwards;
+}
+
+.gift.opening .gift-bow {
+    opacity: 1;
+    animation: lidOpen 0.6s ease-in-out 0.2s forwards;
+}
+
+.gift-button.hidden {
+    display: none;
 }
 
 .letter {
-    display: grid;
-    grid-template-rows: 0fr;
+    display: none;
     opacity: 0;
-    margin-top: 0;
-    transition: grid-template-rows 0.8s ease, opacity 0.8s ease,
-                margin-top 0.8s ease;
+    transform: translateY(25px) scale(0.95);
 }
 
 .letter.show {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    margin-top: 24px;
+    display: block;
+    animation: letterAppear 1s ease forwards;
 }
 
-.letter-inner {
-    min-height: 0;
-    overflow: hidden;
-    padding: 0 22px;
-    border-radius: 20px;
-    background: #fff0f6;
-    line-height: 1.9;
+.letter-content {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.83);
+    border: 2px solid #ffb6d2;
+    border-radius: 25px;
+    box-shadow: 0 15px 45px #bd397b30;
+    backdrop-filter: blur(8px);
 }
 
-.letter.show .letter-inner {
-    padding: 24px 22px;
-    animation: letterAppear 0.9s ease;
-}
-
-.flower {
-    margin-bottom: 12px;
-    font-size: 34px;
+.big-heart {
+    font-size: 50px;
+    margin-bottom: 10px;
+    animation: heartbeat 1.2s infinite;
 }
 
 .letter h2 {
-    margin-bottom: 16px;
-    color: #d94686;
-    font-size: 23px;
+    font-size: clamp(23px, 4vw, 30px);
+    color: #d63384;
+    margin-bottom: 20px;
 }
 
-.letter p {
-    margin-bottom: 16px;
-    font-size: 15px;
+.message {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #78324f;
+    text-align: center;
 }
 
 .signature {
-    margin-top: 12px;
-    color: #d94686;
+    font-size: 16px;
     font-weight: bold;
-}
-
-.music {
-    margin-top: 32px;
-    padding: 22px 14px;
-    border-radius: 20px;
-    background: #fff6fa;
-}
-
-.music-icon {
-    margin-bottom: 8px;
-    font-size: 32px;
-    animation: musicPulse 1.5s infinite ease-in-out;
-}
-
-.music h2 {
-    margin-bottom: 8px;
-    color: #d94686;
-    font-size: 22px;
-}
-
-.music p {
-    margin-bottom: 16px;
-    font-size: 14px;
-    line-height: 1.7;
+    margin-top: 20px;
+    color: #d63384;
 }
 
 .music-button {
-    padding: 12px 25px;
-    color: white;
-    background: linear-gradient(135deg, #ff76ac, #e84393);
+    margin-top: 25px;
+    padding: 12px 22px;
     border: none;
     border-radius: 30px;
+    background: linear-gradient(135deg, #ff5c9b, #d63384);
+    color: white;
     font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(232, 67, 147, 0.22);
+    box-shadow: 0 5px 15px #d6338440;
     transition: transform 0.2s;
 }
 
 .music-button:hover {
-    transform: translateY(-3px);
+    transform: scale(1.05);
 }
 
-footer {
-    margin-top: 26px;
-    color: #b55b84;
-    font-size: 13px;
-}
-
-.background-hearts {
+.hearts {
     position: fixed;
-    top: 12px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 23px;
-    opacity: 0.65;
+    inset: 0;
+    overflow: hidden;
     pointer-events: none;
-    animation: sway 3s infinite ease-in-out;
+    z-index: 1;
 }
 
-.floating-heart {
-    position: fixed;
-    z-index: 10;
+.heart {
+    position: absolute;
     bottom: -40px;
-    font-size: 24px;
-    pointer-events: none;
-    animation: floatUp 4s linear forwards;
+    animation: heartFly linear forwards;
+    opacity: 0.85;
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-10deg); }
+    40% { transform: rotate(10deg); }
+    60% { transform: rotate(-8deg); }
+    80% { transform: rotate(8deg); }
+}
+
+@keyframes giftDisappear {
     to {
-        opacity: 1;
-        transform: translateY(0);
+        transform: scale(0.1);
+        opacity: 0;
     }
 }
 
-@keyframes giftBounce {
-    0%, 100% {
-        transform: translateY(0) rotate(-3deg);
-    }
-    50% {
-        transform: translateY(-10px) rotate(3deg);
-    }
-}
-
-@keyframes giftOpen {
-    0% {
-        transform: scale(1) rotate(0);
-    }
-    25% {
-        transform: scale(1.15) rotate(-12deg);
-    }
-    50% {
-        transform: scale(0.9) rotate(12deg);
-    }
-    75% {
-        transform: scale(1.2) rotate(-5deg);
-    }
-    100% {
-        transform: scale(1) rotate(0);
+@keyframes lidOpen {
+    to {
+        transform: translateY(-65px) rotate(-20deg);
+        opacity: 0;
     }
 }
 
 @keyframes letterAppear {
-    from {
-        transform: translateY(25px) scale(0.96);
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+@keyframes heartFly {
+    0% {
+        transform: translateY(0) rotate(0);
         opacity: 0;
     }
-    to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes musicPulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.15);
-    }
-}
-
-@keyframes sway {
-    0%, 100% {
-        transform: rotate(-4deg);
-    }
-    50% {
-        transform: rotate(4deg);
-    }
-}
-
-@keyframes floatUp {
-    from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    to {
+    15% { opacity: 0.9; }
+    100% {
         transform: translateY(-110vh) rotate(360deg);
         opacity: 0;
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 20px 12px;
+    .letter-content {
+        padding: 23px 18px;
     }
 
-    .card {
-        padding: 26px 16px;
+    .message {
+        font-size: 15px;
     }
 
-    .letter-inner {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
-
-    .letter.show .letter-inner {
-        padding: 20px 14px;
-    }
-
-    .letter h2 {
-        font-size: 20px;
+    .gift {
+        transform: scale(0.9);
     }
 }
 
@@ -312,6 +275,6 @@ footer {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
