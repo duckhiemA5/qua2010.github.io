@@ -7,6 +7,7 @@
     <title>Chúc mừng ngày 20/10 🌸</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="hearts" aria-hidden="true">💗 🌸 💖 🌷 💕</div>
 
@@ -32,18 +33,19 @@
         <button id="surpriseBtn">🎁 Nhận lời chúc đặc biệt</button>
 
         <p id="surprise" class="surprise">
-            Chúc các bạn luôn là phiên bản tuyệt vời nhất của chính mình! 💖
+            Chúc các bạn luôn là phiên bản tuyệt vời nhất
+            của chính mình! 💖
         </p>
 
         <section class="music">
-            <h2>🎵 Một chút âm nhạc dành tặng bạn</h2>
-            <p>Nhấn nút phát bên dưới để nghe nhạc nhé!</p>
+            <h2>🎵 Âm nhạc dành tặng bạn</h2>
+            <p>Một giai điệu nhỏ dành cho ngày 20/10 💗</p>
 
             <div class="music-player">
                 <iframe
-                    src="https://www.youtube.com/embed/_NCJe8VB_b4?si=cSEVJ-hLpbsq0Hwb"
+                    src="https://www.youtube.com/embed/JCn0hoILmyw?start=9&autoplay=1"
                     title="Nhạc chúc mừng 20/10"
-                    allow="autoplay; encrypted-media; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen>
                 </iframe>
@@ -63,7 +65,7 @@
             surprise.classList.toggle("show");
 
             if (surprise.classList.contains("show")) {
-                button.textContent = "💖 Một lời chúc dành riêng cho bạn";
+                button.textContent = "💖 Lời chúc dành cho bạn";
                 createHearts();
             } else {
                 button.textContent = "🎁 Nhận lời chúc đặc biệt";
@@ -75,12 +77,14 @@
 
             for (let i = 0; i < 18; i++) {
                 const heart = document.createElement("span");
+
                 heart.className = "floating-heart";
                 heart.textContent =
                     emojis[Math.floor(Math.random() * emojis.length)];
 
                 heart.style.left = Math.random() * 100 + "vw";
-                heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+                heart.style.animationDuration =
+                    (3 + Math.random() * 3) + "s";
 
                 document.body.appendChild(heart);
 
