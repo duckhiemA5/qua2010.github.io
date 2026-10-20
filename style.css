@@ -1,0 +1,198 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 30px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #7b3153;
+    background: linear-gradient(135deg, #ffe1ec, #fff3f7, #fbd0e4);
+    overflow-x: hidden;
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 760px;
+    padding: 36px 28px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ffc1d8;
+    border-radius: 28px;
+    box-shadow: 0 15px 45px rgba(193, 79, 130, 0.2);
+    animation: appear 1s ease;
+}
+
+.flower {
+    font-size: 60px;
+    animation: sway 2s infinite ease-in-out;
+}
+
+h1 {
+    margin: 15px 0;
+    color: #e34d8b;
+    font-size: clamp(28px, 5vw, 42px);
+}
+
+.subtitle {
+    margin-bottom: 24px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.message {
+    padding: 22px;
+    margin-bottom: 24px;
+    border-radius: 18px;
+    background: #fff0f6;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+button {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    background: linear-gradient(135deg, #ff76ac, #e84393);
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(232, 67, 147, 0.25);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(232, 67, 147, 0.35);
+}
+
+.surprise {
+    display: none;
+    margin-top: 22px;
+    padding: 18px;
+    background: #ffe5f0;
+    border-radius: 16px;
+    line-height: 1.7;
+}
+
+.surprise.show {
+    display: block;
+    animation: appear 0.5s ease;
+}
+
+.music {
+    margin-top: 35px;
+}
+
+.music h2 {
+    margin-bottom: 10px;
+    color: #d94686;
+    font-size: 23px;
+}
+
+.music p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.music-player {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(150, 50, 100, 0.18);
+}
+
+.music-player iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+
+footer {
+    margin-top: 28px;
+    color: #b55b84;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.hearts {
+    position: fixed;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    opacity: 0.65;
+    pointer-events: none;
+    animation: sway 3s infinite ease-in-out;
+}
+
+.floating-heart {
+    position: fixed;
+    z-index: 5;
+    bottom: -40px;
+    font-size: 24px;
+    pointer-events: none;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .card {
+        padding: 26px 16px;
+    }
+
+    .message {
+        padding: 16px;
+        font-size: 15px;
+    }
+
+    .music h2 {
+        font-size: 20px;
+    }
+}
